@@ -17,54 +17,63 @@ public class Main {
         //menu contexts
         //1.Welcome page
         System.out.println("------------------------------------------------------------");
-        System.out.println("("+dir+")");
-        System.out.println("Select operation");
-        System.out.println("\t1.List files\n\t2.Manage files\n\t3.Close program");
-        System.out.println("------------------------------------------------------------");
-        int option = in.nextInt();
-        switch (option){
-            case 1:
-                System.out.println("List of files in current path:"+dir);
-                filesInDir(dir);
-                break;
-            case 2:
-                System.out.println("Manage Files:\n\t1.Create file\n\t2.Delete file\n\t3.Search file");
-                option = in.nextInt();
-                String file = "";
-                switch (option){
-                    case 1:
-                        System.out.println("Enter file name:");
-                        file = getInput();
-                        System.out.println("Created:"+file);
-                        createFile(dir, file);
-                        break;
-
-                    case 2:
-                        System.out.println("Enter file name:");
-                        file = getInput();
-                        System.out.println("Deleted:"+file);
-                        deleteFile(dir, file);
-                        break;
-
-                    case 3:
-                        System.out.println("Enter file name:");
-                        file = getInput();
-                        System.out.println("Search:"+file);
-                        searchFile(dir, file);
-                        break;
-
-                }
-                break;
-            case 3:
-                System.out.println("Application closed");
-                close();
-                break;
-            default:
-                System.out.println("Invalid selection");
-                break;
-        }
+        System.out.println("Cactus- directory management application");
+        System.out.println("Author: Evance Nganyaga (evance.nganyaga@vodacom.co.tz)");
+        System.out.println("------------------------------------------------------------\n");
 
 
+        String context = "welcome_page";
+        System.out.println("Current directory: \n\t"+dir+"");
+        do{
+            System.out.println("Select operation:");
+            System.out.println("\t1.List files\n\t2.Manage files\n\t3.Close program");
+
+
+            int option = in.nextInt();
+            switch (option){
+                case 1:
+                    filesInDir(dir);
+                    break;
+                case 2:
+                    System.out.println("Manage files operations:\n\t1.Create file\n\t2.Delete file\n\t3.Search file");
+                    option = in.nextInt();
+                    String file = "";
+                    switch (option){
+                        case 1:
+                            System.out.print("Enter file name:");
+                            file = getInput();
+                            System.out.println("Created:"+file);
+                            createFile(dir, file);
+                            break;
+
+                        case 2:
+                            System.out.print("Enter file name:");
+                            file = getInput();
+                            System.out.println("Deleted:"+file);
+                            deleteFile(dir, file);
+                            break;
+
+                        case 3:
+                            System.out.print("Enter file name:");
+                            file = getInput();
+                            System.out.println("Search:"+file);
+                            searchFile(dir, file);
+                            break;
+
+                    }
+                    break;
+                case 3:
+                    System.out.println("Application closed");
+                    close();
+                    break;
+                default:
+                    System.out.println("Invalid selection");
+                    break;
+            }
+            System.out.println("------------------------------------------------------------");
+
+
+        }while (context=="welcome_page");
 
 
 
@@ -78,8 +87,6 @@ public class Main {
         return userInputObj.nextLine().toString();
     }
 
-
-
     static  void filesInDir(String dir){
         File folder = new File(dir);
         File[] listOfFiles = folder.listFiles();
@@ -87,7 +94,7 @@ public class Main {
         int k = 1;
         for (int i = 0; i < listOfFiles.length; i++) {
             if (listOfFiles[i].isFile()) {
-                System.out.println("\t"+k+"." + listOfFiles[i].getName());
+                System.out.println("\t"+ listOfFiles[i].getName());
                 k++;
             }
         }
